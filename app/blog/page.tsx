@@ -26,6 +26,14 @@ const PLACEHOLDER_POSTS = [
   { id: "6", slug: "muay-thai-baslangic-rehberi", title: "Muay Thai Başlangıç Rehberi: İlk 3 Ay", excerpt: "Muay Thai'ye başlamak isteyenler için temel teknikler ve öneriler.", cover_image: "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?w=600&q=80", tags: ["Muay Thai", "Başlangıç"], published_at: "2024-12-28T09:00:00Z" },
 ];
 
+// Bolu dövüş sporları SEO içerikleri — statik sayfalar olarak yayında,
+// blog listesinde her zaman görünür (DB'den bağımsız).
+const DOVUS_SPORLARI_POSTS = [
+  { id: "dovus-1", slug: "kickboks-muay-thai-baslangic-rehberi", title: "Kickboks ve Muay Thai: Başlangıç Rehberi", excerpt: "Bolu'da kickboks veya muay thai'ye yeni başlayacaklar için temel teknikler, ilk hafta neler beklemeli, doğru ekipman ve antrenman sıklığı önerileri.", cover_image: "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?w=600&q=80", tags: ["Kickboks", "Muay Thai", "Başlangıç"], published_at: "2026-01-24T09:00:00Z" },
+  { id: "dovus-2", slug: "boks-ozel-dersi-ile-fitness", title: "Boks Özel Dersi ile Fitness: Aynı Anda Hem Form Hem Savunma", excerpt: "Bolu'da boks özel dersi almanın fitness hedeflerinize sağladığı faydalar: kalori yakımı, kas dayanıklılığı, koordinasyon ve öz savunma becerisi bir arada.", cover_image: "https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=600&q=80", tags: ["Boks", "Fitness"], published_at: "2026-01-17T09:00:00Z" },
+  { id: "dovus-3", slug: "bolu-da-dovus-sporlari-neden-gym-machine", title: "Bolu'da Dövüş Sporları: Neden Gym Machine?", excerpt: "Boks, kickboks ve muay thai arasındaki farklar, Bolu'da doğru dövüş salonunu seçerken dikkat edilmesi gereken kriterler ve Gym Machine'in sunduğu avantajlar.", cover_image: "https://images.unsplash.com/photo-1549476464-37392f717541?w=600&q=80", tags: ["Dövüş Sporları", "Bolu"], published_at: "2026-01-10T09:00:00Z" },
+];
+
 export default async function BlogPage() {
   const supabase = await createClient();
   const { data: postsFromDb } = await supabase
@@ -34,7 +42,7 @@ export default async function BlogPage() {
     .eq("published", true)
     .order("published_at", { ascending: false });
 
-  const posts = postsFromDb && postsFromDb.length > 0
+  const dbPosts = postsFromDb && postsFromDb.length > 0
     ? postsFromDb.map((p: Record<string, unknown>) => ({
         id: String(p.id ?? ""),
         slug: String(p.slug ?? ""),
@@ -50,6 +58,8 @@ export default async function BlogPage() {
       }))
     : [];
   const isPlaceholder = !postsFromDb || postsFromDb.length === 0;
+  // Dövüş sporları statik SEO yazıları her zaman listede yer alır (DB durumundan bağımsız)
+  const posts = [...DOVUS_SPORLARI_POSTS, ...(isPlaceholder ? PLACEHOLDER_POSTS : dbPosts)];
 
   const breadcrumbJsonLd = breadcrumbSchema([
     { name: "Ana Sayfa", url: BASE_URL },

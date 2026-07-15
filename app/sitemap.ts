@@ -14,6 +14,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   const staticPages: MetadataRoute.Sitemap = [
     { url: baseUrl,                        lastModified: new Date(), changeFrequency: "weekly",  priority: 1.0 },
+    { url: `${baseUrl}/bolu-dovus-salonu`, lastModified: new Date(), changeFrequency: "monthly", priority: 0.95 },
     { url: `${baseUrl}/hizmetler`,         lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/fiyatlar`,          lastModified: new Date(), changeFrequency: "monthly", priority: 0.9 },
     { url: `${baseUrl}/program-al`,        lastModified: new Date(), changeFrequency: "monthly", priority: 0.8 },
@@ -29,6 +30,19 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${baseUrl}/kosullar`,          lastModified: new Date(), changeFrequency: "yearly",  priority: 0.3 },
   ];
 
+  // Bolu dövüş sporları SEO blog yazıları (statik sayfalar, DB'den bağımsız)
+  const dovusSporlariBlogSlugs = [
+    { slug: "bolu-da-dovus-sporlari-neden-gym-machine", date: "2026-01-10" },
+    { slug: "boks-ozel-dersi-ile-fitness", date: "2026-01-17" },
+    { slug: "kickboks-muay-thai-baslangic-rehberi", date: "2026-01-24" },
+  ];
+  const dovusSporlariPages: MetadataRoute.Sitemap = dovusSporlariBlogSlugs.map(({ slug, date }) => ({
+    url: `${baseUrl}/blog/${slug}`,
+    lastModified: new Date(date),
+    changeFrequency: "monthly" as const,
+    priority: 0.75,
+  }));
+
   const blogPages: MetadataRoute.Sitemap = posts?.map(post => ({
     url: `${baseUrl}/blog/${post.slug}`,
     lastModified: post.published_at ? new Date(post.published_at) : new Date(),
@@ -36,5 +50,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.6,
   })) || [];
 
-  return [...staticPages, ...blogPages];
+  return [...staticPages, ...dovusSporlariPages, ...blogPages];
 }

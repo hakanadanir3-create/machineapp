@@ -136,6 +136,9 @@ export default async function HizmetlerPage() {
               <Link href="/randevu" style={{ padding: "0.75rem 1.75rem", background: "#6A0D25", color: "#fff", fontWeight: 700, fontSize: "0.875rem", borderRadius: "12px", border: "1px solid rgba(212,175,55,0.3)", textDecoration: "none" }}>Randevu Al</Link>
               <Link href="/iletisim" style={{ padding: "0.75rem 1.75rem", background: "#1A1A1A", color: "rgba(255,255,255,0.7)", fontWeight: 500, fontSize: "0.875rem", borderRadius: "12px", border: "1px solid #2A2A2A", textDecoration: "none" }}>Bize Ulaşın</Link>
             </div>
+            <p style={{ marginTop: "1.5rem", color: "rgba(255,255,255,0.35)", fontSize: "0.8125rem" }}>
+              Boks, kickboks ve muay thai hakkında detaylı bilgi için <Link href="/bolu-dovus-salonu" style={{ color: "#D4AF37", textDecoration: "underline" }}>Bolu Dövüş Salonu</Link> sayfamızı inceleyin.
+            </p>
           </div>
         </div>
       </main>

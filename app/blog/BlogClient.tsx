@@ -13,7 +13,7 @@ interface Post {
   published_at?: string;
 }
 
-const ALL_TAGS = ["Tümü", "Fitness", "Boks", "Muay Thai", "Beslenme", "Antrenman", "Motivasyon", "Kas Kazanımı", "Supplement", "Başlangıç"];
+const ALL_TAGS = ["Tümü", "Fitness", "Boks", "Kickboks", "Muay Thai", "Dövüş Sporları", "Beslenme", "Antrenman", "Motivasyon", "Kas Kazanımı", "Supplement", "Başlangıç", "Bolu"];
 
 export default function BlogClient({ posts, isPlaceholder }: { posts: Post[]; isPlaceholder: boolean }) {
   const [activeTag, setActiveTag] = useState("Tümü");

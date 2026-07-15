@@ -57,9 +57,15 @@ export default function Footer() {
           <div>
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "1rem" }}>Hizmetler</p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
-              {["Fitness Üyelik", "Personal Trainer", "Boks Özel Ders", "Kickboks", "Muay Thai"].map(sv => (
-                <li key={sv}>
-                  <Link href="/hizmetler" style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.8125rem", textDecoration: "none" }}>{sv}</Link>
+              {[
+                { label: "Fitness Üyelik", href: "/hizmetler" },
+                { label: "Personal Trainer", href: "/hizmetler" },
+                { label: "Boks Özel Ders", href: "/bolu-dovus-salonu" },
+                { label: "Kickboks", href: "/bolu-dovus-salonu" },
+                { label: "Muay Thai", href: "/bolu-dovus-salonu" },
+              ].map(sv => (
+                <li key={sv.label}>
+                  <Link href={sv.href} style={{ color: "rgba(255,255,255,0.45)", fontSize: "0.8125rem", textDecoration: "none" }}>{sv.label}</Link>
                 </li>
               ))}
             </ul>
@@ -70,6 +76,7 @@ export default function Footer() {
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "1rem" }}>Hızlı Linkler</p>
             <ul style={{ listStyle: "none", display: "flex", flexDirection: "column", gap: "0.625rem" }}>
               {[
+                { href: "/bolu-dovus-salonu", label: "Bolu Dövüş Salonu" },
                 { href: "/fiyatlar", label: "Fiyatlar" },
                 { href: "/magaza", label: "Mağaza" },
                 { href: "/program-al", label: "Beslenme & Fitness" },

@@ -12,27 +12,27 @@ export default function robots(): MetadataRoute.Robots {
       },
       {
         userAgent: "GPTBot",
-        allow: ["/", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
+        allow: ["/", "/bolu-dovus-salonu", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
         disallow: ["/admin/", "/dashboard/", "/api/", "/uye/", "/odeme/"],
       },
       {
         userAgent: "Google-Extended",
-        allow: ["/", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
+        allow: ["/", "/bolu-dovus-salonu", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
         disallow: ["/admin/", "/dashboard/", "/api/", "/uye/", "/odeme/"],
       },
       {
         userAgent: "PerplexityBot",
-        allow: ["/", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
+        allow: ["/", "/bolu-dovus-salonu", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
         disallow: ["/admin/", "/dashboard/", "/api/", "/uye/", "/odeme/"],
       },
       {
         userAgent: "anthropic-ai",
-        allow: ["/", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
+        allow: ["/", "/bolu-dovus-salonu", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
         disallow: ["/admin/", "/dashboard/", "/api/", "/uye/", "/odeme/"],
       },
       {
         userAgent: "Claude-Web",
-        allow: ["/", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
+        allow: ["/", "/bolu-dovus-salonu", "/hizmetler", "/fiyatlar", "/hakkimizda", "/iletisim", "/sss", "/blog/", "/randevu", "/program-al", "/bki"],
         disallow: ["/admin/", "/dashboard/", "/api/", "/uye/", "/odeme/"],
       },
     ],
