@@ -30,6 +30,10 @@ import {
   GraduationCap,
   Bell,
   TrendingUp,
+  Wallet,
+  Receipt,
+  Wallet2,
+  Calculator,
 } from "lucide-react";
 
 interface NavItem {
@@ -85,6 +89,10 @@ const navGroups: NavGroup[] = [
     group: "MALİ",
     items: [
       { label: "Mali Dashboard", href: "/admin/mali", icon: <TrendingUp size={17} /> },
+      { label: "Gelir Takibi", href: "/admin/mali/gelir", icon: <Wallet size={17} /> },
+      { label: "Gider Takibi", href: "/admin/mali/gider", icon: <Receipt size={17} /> },
+      { label: "Üye Ödemeleri", href: "/admin/mali/odemeler", icon: <Wallet2 size={17} /> },
+      { label: "Vergi Hesaplama", href: "/admin/mali/vergi", icon: <Calculator size={17} /> },
     ],
   },
   {
@@ -212,7 +220,10 @@ export default function AdminSidebar({ open, onToggle }: AdminSidebarProps) {
               </div>
             )}
             {group.items.map((item) => {
-              const isActive = pathname.startsWith(item.href);
+              const isActive =
+                item.href === "/admin/mali"
+                  ? pathname === "/admin/mali"
+                  : pathname.startsWith(item.href);
               const isHovered = hoveredHref === item.href;
               return (
                 <Link

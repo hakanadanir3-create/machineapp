@@ -1,9 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import {
   TrendingUp, TrendingDown, Users, CreditCard, Download,
-  BarChart3, Calendar, CheckCircle, Clock, XCircle,
+  BarChart3, CheckCircle, Clock, XCircle,
+  Receipt, Wallet, Calculator, Wallet2,
 } from "lucide-react";
 
 interface Member {
@@ -28,7 +30,22 @@ interface MonthlyData {
   revenue: number;
   orders: number;
   members: number;
+  expense: number;
 }
+
+interface Expense {
+  amount: number;
+  expense_date: string;
+  category_name: string;
+}
+
+interface ExpenseSlice {
+  name: string;
+  value: number;
+  color: string;
+}
+
+const PIE_COLORS = ["#D4AF37", "#f87171", "#60a5fa", "#4ade80", "#f59e0b", "#a78bfa", "#f472b6", "#94a3b8"];
 
 function getMembershipStatus(end: string | null): "active" | "expiring" | "expired" | "none" {
   if (!end) return "none";
@@ -86,6 +103,42 @@ function LineChart({ data, color = "#D4AF37", h = 80, w = 320 }: { data: number[
   );
 }
 
+// ─── Pie Chart (SVG, conic-gradient tabanlı basit donut) ────────────────────
+function PieChart({ slices, size = 140 }: { slices: ExpenseSlice[]; size?: number }) {
+  const total = slices.reduce((s, x) => s + x.value, 0);
+  if (total <= 0) return null;
+  const r = size / 2;
+  const strokeWidth = r * 0.42;
+  const radius = r - strokeWidth / 2;
+  const circumference = 2 * Math.PI * radius;
+  let offset = 0;
+  return (
+    <svg width={size} height={size} viewBox={`0 0 ${size} ${size}`}>
+      <g transform={`rotate(-90 ${r} ${r})`}>
+        {slices.map((s) => {
+          const frac = s.value / total;
+          const dash = frac * circumference;
+          const circle = (
+            <circle
+              key={s.name}
+              cx={r}
+              cy={r}
+              r={radius}
+              fill="none"
+              stroke={s.color}
+              strokeWidth={strokeWidth}
+              strokeDasharray={`${dash} ${circumference - dash}`}
+              strokeDashoffset={-offset}
+            />
+          );
+          offset += dash;
+          return circle;
+        })}
+      </g>
+    </svg>
+  );
+}
+
 const cardStyle: React.CSSProperties = {
   background: "#141414",
   border: "1px solid rgba(255,255,255,0.07)",
@@ -96,6 +149,7 @@ const cardStyle: React.CSSProperties = {
 export default function MaliPage() {
   const [members, setMembers] = useState<Member[]>([]);
   const [orders, setOrders] = useState<Order[]>([]);
+  const [expenses, setExpenses] = useState<Expense[]>([]);
   const [loading, setLoading] = useState(true);
   const [monthlyData, setMonthlyData] = useState<MonthlyData[]>([]);
   const [viewMode, setViewMode] = useState<"monthly" | "yearly">("monthly");
@@ -103,14 +157,19 @@ export default function MaliPage() {
   useEffect(() => {
     async function load() {
       const supabase = createClient();
-      const [{ data: m }, { data: o }] = await Promise.all([
+      const [{ data: m }, { data: o }, expRes, incRes] = await Promise.all([
         supabase.from("members").select("id, full_name, email, membership_end, membership_start, created_at").order("created_at", { ascending: false }),
         supabase.from("orders").select("id, total_amount, payment_status, created_at, user_id").order("created_at", { ascending: false }).limit(200),
+        supabase.from("finance_expenses").select("amount, expense_date, category_name"),
+        supabase.from("finance_income").select("amount, income_date"),
       ]);
       const memberList = (m as Member[]) ?? [];
       const orderList = (o as Order[]) ?? [];
+      const expenseList = (expRes.data as Expense[]) ?? [];
+      const incomeList = (incRes.data as { amount: number; income_date: string }[]) ?? [];
       setMembers(memberList);
       setOrders(orderList);
+      setExpenses(expenseList);
       // Aylık veri hesapla (son 12 ay)
       const monthly: MonthlyData[] = [];
       for (let i = 11; i >= 0; i--) {
@@ -118,12 +177,25 @@ export default function MaliPage() {
         d.setMonth(d.getMonth() - i);
         const yr = d.getFullYear(), mo = d.getMonth();
         const label = d.toLocaleDateString("tr-TR", { month: "short", year: "2-digit" });
-        const revenue = orderList
+        const orderRevenue = orderList
           .filter((o) => {
             const od = new Date(o.created_at);
             return od.getFullYear() === yr && od.getMonth() === mo && o.payment_status === "paid";
           })
           .reduce((sum, o) => sum + (o.total_amount ?? 0), 0);
+        const manualRevenue = incomeList
+          .filter((inc) => {
+            const idd = new Date(inc.income_date);
+            return idd.getFullYear() === yr && idd.getMonth() === mo;
+          })
+          .reduce((sum, inc) => sum + Number(inc.amount), 0);
+        const revenue = orderRevenue + manualRevenue;
+        const expense = expenseList
+          .filter((e) => {
+            const ed = new Date(e.expense_date);
+            return ed.getFullYear() === yr && ed.getMonth() === mo;
+          })
+          .reduce((sum, e) => sum + Number(e.amount), 0);
         const ordersCount = orderList.filter((o) => {
           const od = new Date(o.created_at);
           return od.getFullYear() === yr && od.getMonth() === mo;
@@ -132,7 +204,7 @@ export default function MaliPage() {
           const md = new Date(mem.created_at);
           return md.getFullYear() === yr && md.getMonth() === mo;
         }).length;
-        monthly.push({ month: label, revenue, orders: ordersCount, members: newMembers });
+        monthly.push({ month: label, revenue, orders: ordersCount, members: newMembers, expense });
       }
       setMonthlyData(monthly);
       setLoading(false);
@@ -140,7 +212,6 @@ export default function MaliPage() {
     load();
   }, []);
 
-  const totalRevenue = orders.filter((o) => o.payment_status === "paid").reduce((s, o) => s + (o.total_amount ?? 0), 0);
   const totalOrders = orders.length;
   const paidOrders = orders.filter((o) => o.payment_status === "paid").length;
   const pendingOrders = orders.filter((o) => o.payment_status === "pending").length;
@@ -158,9 +229,26 @@ export default function MaliPage() {
 
   // Yıllık toplamlar
   const yearlyRevenue = monthlyData.reduce((s, m) => s + m.revenue, 0);
+  const yearlyExpense = monthlyData.reduce((s, m) => s + m.expense, 0);
+  const yearlyNetProfit = yearlyRevenue - yearlyExpense;
   const yearlyOrders = monthlyData.reduce((s, m) => s + m.orders, 0);
   const revenueData = monthlyData.map((m) => m.revenue);
   const membersData = monthlyData.map((m) => m.members);
+  const netProfitThisMonth = (thisMonth?.revenue ?? 0) - (thisMonth?.expense ?? 0);
+
+  // Cari ay gider kategori dağılımı (pasta grafik)
+  const now = new Date();
+  const currentMonthStr = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, "0")}`;
+  const expenseByCategory = expenses
+    .filter((e) => e.expense_date.slice(0, 7) === currentMonthStr)
+    .reduce<Record<string, number>>((acc, e) => {
+      acc[e.category_name] = (acc[e.category_name] ?? 0) + Number(e.amount);
+      return acc;
+    }, {});
+  const expenseSlices: ExpenseSlice[] = Object.entries(expenseByCategory)
+    .sort((a, b) => b[1] - a[1])
+    .map(([name, value], i) => ({ name, value, color: PIE_COLORS[i % PIE_COLORS.length] }));
+  const totalExpenseThisMonth = expenseSlices.reduce((s, x) => s + x.value, 0);
 
   const fmt = (n: number) =>
     n.toLocaleString("tr-TR", { style: "currency", currency: "TRY", maximumFractionDigits: 0 });
@@ -198,7 +286,7 @@ export default function MaliPage() {
   return (
     <div style={{ maxWidth: 1200 }}>
       {/* Başlık */}
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 24 }}>
+      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-end", marginBottom: 16 }}>
         <div>
           <h1 style={{ color: "#fff", fontWeight: 800, fontSize: 26, letterSpacing: "-0.02em", margin: "0 0 4px" }}>
             Mali Dashboard
@@ -217,8 +305,26 @@ export default function MaliPage() {
         </div>
       </div>
 
+      {/* Modül Navigasyonu */}
+      <div style={{ display: "flex", gap: 8, marginBottom: 24, flexWrap: "wrap" }}>
+        {[
+          { href: "/admin/mali/gelir", label: "Gelir Takibi", icon: <Wallet size={13} />, color: "#4ade80" },
+          { href: "/admin/mali/gider", label: "Gider Takibi", icon: <Receipt size={13} />, color: "#f87171" },
+          { href: "/admin/mali/odemeler", label: "Üye Ödemeleri", icon: <Wallet2 size={13} />, color: "#60a5fa" },
+          { href: "/admin/mali/vergi", label: "Vergi Hesaplama", icon: <Calculator size={13} />, color: "#D4AF37" },
+        ].map((item) => (
+          <Link
+            key={item.href}
+            href={item.href}
+            style={{ display: "flex", alignItems: "center", gap: 6, padding: "8px 14px", background: `${item.color}12`, border: `1px solid ${item.color}30`, color: item.color, borderRadius: 9, fontSize: 12.5, fontWeight: 600, textDecoration: "none" }}
+          >
+            {item.icon} {item.label}
+          </Link>
+        ))}
+      </div>
+
       {/* Ana İstatistik Kartları */}
-      <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 14, marginBottom: 20 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(5,1fr)", gap: 14, marginBottom: 20 }}>
         {[
           {
             label: "Toplam Gelir (12 ay)",
@@ -229,11 +335,19 @@ export default function MaliPage() {
             trend: revenuePct,
           },
           {
-            label: "Toplam Sipariş",
-            value: loading ? "–" : totalOrders.toString(),
-            sub: `Ödenen: ${paidOrders} | Bekleyen: ${pendingOrders}`,
-            color: "#60a5fa",
-            icon: <CreditCard size={20} />,
+            label: "Toplam Gider (12 ay)",
+            value: loading ? "–" : fmt(yearlyExpense),
+            sub: `Bu ay: ${loading ? "–" : fmt(thisMonth?.expense ?? 0)}`,
+            color: "#f87171",
+            icon: <Receipt size={20} />,
+            trend: null,
+          },
+          {
+            label: "Net Kâr (12 ay)",
+            value: loading ? "–" : fmt(yearlyNetProfit),
+            sub: `Bu ay net: ${loading ? "–" : fmt(netProfitThisMonth)}`,
+            color: yearlyNetProfit >= 0 ? "#4ade80" : "#f87171",
+            icon: <BarChart3 size={20} />,
             trend: null,
           },
           {
@@ -249,7 +363,7 @@ export default function MaliPage() {
             value: loading ? "–" : `${activeMembers} Aktif`,
             sub: `${expiringMembers} bitecek | ${expiredMembers} dolmuş`,
             color: activeMembers > expiredMembers ? "#4ade80" : "#f87171",
-            icon: <BarChart3 size={20} />,
+            icon: <CreditCard size={20} />,
             trend: null,
           },
         ].map((card) => (
@@ -273,7 +387,7 @@ export default function MaliPage() {
       </div>
 
       {/* Grafik Satırı */}
-      <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
+      <div style={{ display: "grid", gridTemplateColumns: "1.2fr 1.2fr 1fr", gap: 16, marginBottom: 16 }}>
         {/* Gelir grafiği */}
         <div style={cardStyle}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 16 }}>
@@ -347,6 +461,50 @@ export default function MaliPage() {
             ))}
           </div>
         </div>
+
+        {/* Gider kategori dağılımı + Sipariş özeti */}
+        <div style={cardStyle}>
+          <div style={{ marginBottom: 14 }}>
+            <div style={{ fontSize: 14, fontWeight: 700, color: "#fff", marginBottom: 2 }}>Gider Dağılımı</div>
+            <div style={{ fontSize: 11, color: "rgba(255,255,255,0.3)" }}>Bu ay · {fmt(totalExpenseThisMonth)}</div>
+          </div>
+          {loading ? (
+            <div style={{ height: 140, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 13 }}>Yükleniyor...</span>
+            </div>
+          ) : expenseSlices.length === 0 ? (
+            <div style={{ height: 140, display: "flex", alignItems: "center", justifyContent: "center" }}>
+              <span style={{ color: "rgba(255,255,255,0.25)", fontSize: 12 }}>Bu ay gider kaydı yok</span>
+            </div>
+          ) : (
+            <div style={{ display: "flex", justifyContent: "center", marginBottom: 10 }}>
+              <PieChart slices={expenseSlices} size={130} />
+            </div>
+          )}
+          {expenseSlices.length > 0 && (
+            <div style={{ display: "flex", flexDirection: "column", gap: 6, marginBottom: 14 }}>
+              {expenseSlices.slice(0, 4).map((s) => (
+                <div key={s.name} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", fontSize: 11.5 }}>
+                  <div style={{ display: "flex", alignItems: "center", gap: 6 }}>
+                    <span style={{ width: 8, height: 8, borderRadius: 2, background: s.color, display: "inline-block" }} />
+                    <span style={{ color: "rgba(255,255,255,0.6)" }}>{s.name}</span>
+                  </div>
+                  <span style={{ color: "#fff", fontWeight: 600 }}>{fmt(s.value)}</span>
+                </div>
+              ))}
+            </div>
+          )}
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: 8, borderTop: "1px solid rgba(255,255,255,0.06)", paddingTop: 12 }}>
+            <div style={{ background: "#1A1A1A", borderRadius: 9, padding: "10px 12px" }}>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>Toplam Sipariş</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: "#60a5fa" }}>{loading ? "–" : totalOrders}</div>
+            </div>
+            <div style={{ background: "#1A1A1A", borderRadius: 9, padding: "10px 12px" }}>
+              <div style={{ fontSize: 10, color: "rgba(255,255,255,0.3)" }}>Ödenen / Bekleyen</div>
+              <div style={{ fontSize: 15, fontWeight: 800, color: "#fff" }}>{loading ? "–" : `${paidOrders} / ${pendingOrders}`}</div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Aylık Karşılaştırma Tablosu */}
@@ -366,7 +524,7 @@ export default function MaliPage() {
           <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr style={{ borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-                {["Ay", "Gelir", "Sipariş", "Yeni Üye", "Değişim"].map((h) => (
+                {["Ay", "Gelir", "Gider", "Net Kâr", "Sipariş", "Yeni Üye", "Değişim"].map((h) => (
                   <th key={h} style={{ padding: "8px 12px", textAlign: "left", fontSize: 11, color: "rgba(255,255,255,0.3)", fontWeight: 600, letterSpacing: "0.05em" }}>{h}</th>
                 ))}
               </tr>
@@ -375,10 +533,13 @@ export default function MaliPage() {
               {[...monthlyData].reverse().map((row, i, arr) => {
                 const prev = arr[i + 1];
                 const pct = prev && prev.revenue > 0 ? Math.round(((row.revenue - prev.revenue) / prev.revenue) * 100) : null;
+                const netProfit = row.revenue - row.expense;
                 return (
                   <tr key={row.month} style={{ borderBottom: "1px solid rgba(255,255,255,0.04)" }}>
                     <td style={{ padding: "9px 12px", fontSize: 13, color: i === 0 ? "#fff" : "rgba(255,255,255,0.55)", fontWeight: i === 0 ? 700 : 400 }}>{row.month}</td>
                     <td style={{ padding: "9px 12px", fontSize: 13, color: "#D4AF37", fontWeight: 700 }}>{fmt(row.revenue)}</td>
+                    <td style={{ padding: "9px 12px", fontSize: 13, color: "#f87171" }}>{fmt(row.expense)}</td>
+                    <td style={{ padding: "9px 12px", fontSize: 13, color: netProfit >= 0 ? "#4ade80" : "#f87171", fontWeight: 700 }}>{fmt(netProfit)}</td>
                     <td style={{ padding: "9px 12px", fontSize: 13, color: "rgba(255,255,255,0.5)" }}>{row.orders}</td>
                     <td style={{ padding: "9px 12px", fontSize: 13, color: "#4ade80" }}>{row.members > 0 ? `+${row.members}` : "0"}</td>
                     <td style={{ padding: "9px 12px" }}>
@@ -394,11 +555,12 @@ export default function MaliPage() {
             </tbody>
           </table>
         ) : (
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 14 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 14 }}>
             {[
               { label: "Yıllık Gelir", value: fmt(yearlyRevenue), color: "#D4AF37", icon: <TrendingUp size={20} /> },
+              { label: "Yıllık Gider", value: fmt(yearlyExpense), color: "#f87171", icon: <Receipt size={20} /> },
+              { label: "Yıllık Net Kâr", value: fmt(yearlyNetProfit), color: yearlyNetProfit >= 0 ? "#4ade80" : "#f87171", icon: <BarChart3 size={20} /> },
               { label: "Yıllık Sipariş", value: yearlyOrders.toString(), color: "#60a5fa", icon: <CreditCard size={20} /> },
-              { label: "Yıllık Yeni Üye", value: monthlyData.reduce((s, m) => s + m.members, 0).toString(), color: "#4ade80", icon: <Users size={20} /> },
             ].map((card) => (
               <div key={card.label} style={{ background: "#1A1A1A", borderRadius: 12, padding: "18px 20px", display: "flex", alignItems: "center", gap: 14 }}>
                 <div style={{ width: 44, height: 44, borderRadius: 12, background: `${card.color}18`, display: "flex", alignItems: "center", justifyContent: "center", color: card.color }}>
