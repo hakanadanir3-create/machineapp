@@ -186,7 +186,7 @@ export default function Navbar() {
                   Giriş Yap
                 </Link>
                 <Link href="/randevu" style={{ display: "block", textAlign: "center", padding: "0.875rem", background: "#6A0D25", color: "#fff", fontSize: "0.875rem", fontWeight: 700, borderRadius: "12px", border: "1px solid rgba(212,175,55,0.3)", textDecoration: "none" }}>
-                  Ücretsiz Deneme Antrenmanı Al
+                  Randevu Al
                 </Link>
               </div>
             </div>

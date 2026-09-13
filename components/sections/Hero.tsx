@@ -25,7 +25,7 @@ interface HeroProps {
 export default function Hero({
   title = "Makine Gibi Çalış. Sonuç Kaçınılmaz.",
   subtitle = "Bilimsel antrenman programları, uzman eğitmenler ve premium ekipmanlarla hedeflerine ulaş.",
-  btn1 = "Ücretsiz Deneme Antrenmanı",
+  btn1 = "Randevu Al",
   btn2 = "WhatsApp ile Yaz",
   bgImage = "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=1920&q=80",
   whatsapp = "903742701455",
@@ -52,7 +52,7 @@ export default function Hero({
     return () => { if (timerRef.current) clearInterval(timerRef.current); };
   }, [photos.length, interval_]);
 
-  const wa = `https://wa.me/${whatsapp}?text=${encodeURIComponent("Merhaba, deneme antrenmanı hakkında bilgi almak istiyorum.")}`;
+  const wa = `https://wa.me/${whatsapp}?text=${encodeURIComponent("Merhaba, özel ders randevusu hakkında bilgi almak istiyorum.")}`;
   const [line1, line2] = title.includes(".")
     ? [title.substring(0, title.indexOf(".") + 1), title.substring(title.indexOf(".") + 1).trim()]
     : [title, ""];

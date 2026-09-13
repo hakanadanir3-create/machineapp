@@ -118,7 +118,7 @@ export default function BlogPost() {
 
               <h2 style={{ color: "#fff", fontSize: "1.375rem", fontWeight: 700, margin: "2rem 0 0.875rem", fontFamily: "var(--font-heading)" }}>Gym Machine&apos;de Kickboks ve Muay Thai</h2>
               <p style={{ marginBottom: "1.25rem" }}>
-                <Link href="/bolu-dovus-salonu" style={{ color: "#D4AF37", textDecoration: "underline" }}>Gym Machine Bolu</Link>&apos;da sertifikalı antrenörler eşliğinde sıfırdan başlangıç programlarımızla kickboks ve muay thai öğrenebilirsiniz. İlk deneme dersi ücretsizdir.
+                <Link href="/bolu-dovus-salonu" style={{ color: "#D4AF37", textDecoration: "underline" }}>Gym Machine Bolu</Link>&apos;da sertifikalı antrenörler eşliğinde sıfırdan başlangıç programlarımızla kickboks ve muay thai öğrenebilirsiniz.
               </p>
               <p style={{ marginBottom: "1.25rem" }}>
                 Boks özel dersinin fitness faydaları hakkında daha fazla bilgi için <Link href="/blog/boks-ozel-dersi-ile-fitness" style={{ color: "#D4AF37", textDecoration: "underline" }}>Boks Özel Dersi ile Fitness</Link> yazımıza, Bolu&apos;da doğru dövüş salonunu seçme kriterleri için <Link href="/blog/bolu-da-dovus-sporlari-neden-gym-machine" style={{ color: "#D4AF37", textDecoration: "underline" }}>Bolu&apos;da Dövüş Sporları: Neden Gym Machine?</Link> yazımıza göz atabilirsiniz.
@@ -128,9 +128,9 @@ export default function BlogPost() {
             <div style={{ marginTop: "3.5rem", background: "rgba(106,13,37,0.08)", border: "1px solid rgba(106,13,37,0.2)", borderRadius: "20px", padding: "2rem", textAlign: "center" }}>
               <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: "0.625rem" }}>Gym Machine&apos;de Antrenman Yap</p>
               <h3 style={{ color: "#fff", fontWeight: 800, fontSize: "1.25rem", fontFamily: "var(--font-heading)", marginBottom: "0.625rem" }}>Kickboks veya Muay Thai&apos;ye Bugün Başla</h3>
-              <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem", marginBottom: "1.5rem" }}>Uzman kadromuzla hedeflerine ulaşmaya bugün başla. İlk deneme dersi ücretsiz.</p>
+              <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem", marginBottom: "1.5rem" }}>Uzman kadromuzla hedeflerine ulaşmaya bugün başla.</p>
               <Link href="/randevu" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.875rem 2rem", background: "#6A0D25", color: "#fff", fontWeight: 700, fontSize: "0.9375rem", borderRadius: "12px", border: "1px solid rgba(212,175,55,0.3)", textDecoration: "none" }}>
-                Deneme Dersi Al <ArrowRight style={{ width: "16px", height: "16px" }} />
+                Randevu Al <ArrowRight style={{ width: "16px", height: "16px" }} />
               </Link>
             </div>
           </article>

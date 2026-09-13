@@ -3,7 +3,7 @@ import Link from "next/link";
 import { MessageCircle, ArrowRight, Phone } from "lucide-react";
 
 export default function HomeFinalCTA() {
-  const wa = `https://wa.me/903742701455?text=${encodeURIComponent("Merhaba, deneme antrenmanı hakkında bilgi almak istiyorum.")}`;
+  const wa = `https://wa.me/903742701455?text=${encodeURIComponent("Merhaba, özel ders randevusu hakkında bilgi almak istiyorum.")}`;
 
   return (
     <section style={{ padding: "5rem 0", background: "#0B0B0B" }}>
@@ -14,10 +14,10 @@ export default function HomeFinalCTA() {
           <div style={{ position: "relative", zIndex: 1 }}>
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "1rem" }}>Başlamak İçin Bir Adım</p>
             <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)", fontWeight: 800, color: "#fff", fontFamily: "var(--font-heading)", marginBottom: "1rem", lineHeight: 1.1 }}>
-              İlk Antrenman<br /><span style={{ color: "#D4AF37" }}>Tamamen Ücretsiz</span>
+              Özel Ders İçin<br /><span style={{ color: "#D4AF37" }}>Randevu Al</span>
             </h2>
             <p style={{ color: "rgba(255,255,255,0.65)", fontSize: "0.9375rem", marginBottom: "2rem", maxWidth: "32rem", marginInline: "auto", lineHeight: 1.7 }}>
-              Hiçbir ön ödeme yok. Gel, gör, hisset. Seni tanıyalım ve hedeflerine uygun programı birlikte belirleyelim.
+              Gel, gör, hisset. Seni tanıyalım ve hedeflerine uygun programı birlikte belirleyelim.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/randevu" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.875rem 1.75rem", background: "#D4AF37", color: "#0B0B0B", fontWeight: 800, fontSize: "0.9375rem", borderRadius: "12px", textDecoration: "none" }}>

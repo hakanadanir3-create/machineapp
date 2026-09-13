@@ -38,6 +38,12 @@ const nextConfig: NextConfig = {
     ],
   },
 
+  async redirects() {
+    return [
+      { source: "/deneme-antrenman", destination: "/randevu", permanent: true },
+    ];
+  },
+
   async headers() {
     return [
       {

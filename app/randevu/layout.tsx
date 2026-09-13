@@ -3,12 +3,12 @@ import { breadcrumbSchema, faqSchema, BASE_URL } from "@/lib/seo";
 
 export const metadata: Metadata = {
   title: "Randevu Al — Machine Gym | Bolu Spor Salonu Online Randevu",
-  description: "Machine Gym Bolu'da ücretsiz deneme antrenmanı veya üyelik görüşmesi için online randevu alın. Boks, fitness, personal trainer, kickboks, muay thai.",
-  keywords: ["machine gym randevu", "bolu spor salonu randevu", "ücretsiz deneme antrenman bolu", "boks dersi randevu bolu"],
+  description: "Machine Gym Bolu'da özel ders randevusu alın. Boks, kickboks, muay thai, personal trainer.",
+  keywords: ["machine gym randevu", "bolu spor salonu randevu", "boks dersi randevu bolu"],
   alternates: { canonical: `${BASE_URL}/randevu` },
   openGraph: {
     title: "Randevu Al — Machine Gym Bolu",
-    description: "Ücretsiz deneme antrenmanı için online randevu alın.",
+    description: "Özel ders randevusu için online randevu alın.",
     url: `${BASE_URL}/randevu`,
     siteName: "Machine Gym",
     locale: "tr_TR",
@@ -17,9 +17,8 @@ export const metadata: Metadata = {
 };
 
 const RANDEVU_FAQ = [
-  { question: "Machine Gym'de deneme antrenmanı nasıl alınır?", answer: "Online randevu formunu doldurarak tercih ettiğiniz tarih ve saati seçin. Randevu onayı WhatsApp ile iletilir." },
-  { question: "Deneme antrenmanı için ücret ödemem gerekiyor mu?", answer: "Hayır, Machine Gym'de ilk deneme antrenmanı tamamen ücretsizdir." },
-  { question: "Hangi hizmetler için randevu alabiliyorum?", answer: "Fitness üyeliği danışması, personal trainer, boks özel dersi, kickboks ve muay thai için randevu alabilirsiniz." },
+  { question: "Machine Gym'de özel ders randevusu nasıl alınır?", answer: "Online randevu formunu doldurarak tercih ettiğiniz tarih ve saati seçin. Randevu onayı WhatsApp ile iletilir." },
+  { question: "Hangi hizmetler için randevu alabiliyorum?", answer: "Personal trainer, boks özel dersi, kickboks ve muay thai için randevu alabilirsiniz." },
 ];
 
 const breadcrumbJsonLd = breadcrumbSchema([

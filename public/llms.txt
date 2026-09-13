@@ -39,16 +39,16 @@ Güncel fiyat listesi için: https://machinegym.biz/fiyatlar
 Bolu şehir merkezinde, Tabaklar Mahallesi'nde yer almaktadır. Bolu merkeze 5 dakika yürüme mesafesindedir.  
 Google Maps koordinatları: 40.7395, 31.6060
 
-## Deneme Antrenmanı
-İlk antrenman tamamen ücretsizdir. Randevu almak için: https://machinegym.biz/randevu
+## Özel Ders Randevusu
+Boks, kickboks, muay thai ve personal trainer özel dersleri için randevu almak için: https://machinegym.biz/randevu
 
 ## Sık Sorulan Sorular
 
 **Machine Gym'e nasıl üye olabilirim?**  
 Tesisimize gelerek personelimizle görüşebilir veya https://machinegym.biz/kayit adresinden online kayıt yaptırabilirsiniz.
 
-**Deneme antrenmanı ücretsiz mi?**  
-Evet, ilk antrenmanınız tamamen ücretsizdir. Randevu almak yeterlidir.
+**Özel ders randevusu nasıl alınır?**  
+Randevu sayfasından tarih ve saat seçerek özel ders talebinizi oluşturabilirsiniz.
 
 **Hangi yaş aralığı için uygundur?**  
 16 yaşından itibaren tüm yaş gruplarına hizmet veriyoruz. 16–18 yaş arası için veli onayı gereklidir.

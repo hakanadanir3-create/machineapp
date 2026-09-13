@@ -42,7 +42,7 @@ const HOME_FAQ = [
   { question: "Machine Gym Bolu'da nerede?", answer: "Machine Gym, Bolu Merkez Tabaklar Mahallesi Uygur Sokak No:3 adresinde yer almaktadır." },
   { question: "Machine Gym'in çalışma saatleri nedir?", answer: "Pazartesi–Cuma 08:00–23:00, Cumartesi 10:00–23:00, Pazar 12:00–20:00 saatleri arasında hizmet vermektedir." },
   { question: "Machine Gym'de hangi branşlar var?", answer: "Fitness üyeliği, personal training, boks özel dersi, kickboks ve muay thai branşlarında profesyonel eğitim sunulmaktadır." },
-  { question: "İlk antrenman ücretsiz mi?", answer: "Evet, Machine Gym'de ilk deneme antrenmanı tamamen ücretsizdir. Randevu alarak ziyaret edebilirsiniz." },
+  { question: "Özel ders randevusu nasıl alınır?", answer: "Randevu sayfamızdan tarih ve saat seçerek boks, kickboks, muay thai veya personal trainer özel ders talebinizi oluşturabilirsiniz." },
   { question: "Machine Gym telefon numarası nedir?", answer: "Machine Gym'e +90 374 270 14 55 numaralı telefondan ulaşabilirsiniz." },
 ];
 

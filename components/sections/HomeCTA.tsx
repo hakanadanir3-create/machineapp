@@ -14,7 +14,7 @@ export default function HomeCTA() {
           transition={{ duration: 0.5 }}
         >
           <p className="text-white/60 text-sm mb-6">
-            Taahhüt yok — ilk antrenman ücretsiz.
+            Özel ders için hemen randevu al.
           </p>
           <Link
             href="/randevu"

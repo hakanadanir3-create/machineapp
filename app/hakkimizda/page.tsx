@@ -153,7 +153,7 @@ export default async function HakkimizdaPage() {
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Başlamak İçin</p>
             <h3 style={{ color: "#fff", fontWeight: 800, fontSize: "1.75rem", fontFamily: "var(--font-heading)", marginBottom: "0.75rem" }}>Bize Katıl</h3>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9375rem", marginBottom: "2rem", maxWidth: "28rem", marginInline: "auto", lineHeight: 1.7 }}>
-              İlk deneme antrenmanı ücretsiz. Gel, tanış, ortamı gör — sonra karar ver.
+              Özel ders için randevu al. Gel, tanış, ortamı gör — sonra karar ver.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/randevu" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.875rem 2rem", background: "#6A0D25", color: "#fff", fontWeight: 700, fontSize: "0.9375rem", borderRadius: "12px", border: "1px solid rgba(212,175,55,0.3)", textDecoration: "none" }}>

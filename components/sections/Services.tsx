@@ -47,7 +47,7 @@ const services = [
     description:
       "Tayland boks sanatı ile sekiz uzvunuzu kullanmayı öğrenin. Disiplin, güç ve esneklik.",
     image: "https://images.unsplash.com/photo-1604480132736-44c188fe4d20?w=600&q=80",
-    cta: "Deneme Dersi",
+    cta: "Randevu Al",
     href: "/randevu",
   },
 ];

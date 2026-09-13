@@ -148,7 +148,7 @@ export default function ContentPage() {
           <Field label="Ana Başlık" value={g("hero_title")} onChange={v => set("hero_title", v)} placeholder="Makine Gibi Çalış. Sonuç Kaçınılmaz." />
           <Field label="Alt Başlık" value={g("hero_subtitle")} onChange={v => set("hero_subtitle", v)} placeholder="Bolu'nun en disiplinli fitness & boks salonu" />
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-            <Field label="Buton 1 Metni" value={g("hero_btn1")} onChange={v => set("hero_btn1", v)} placeholder="Deneme Antrenmanı Al" />
+            <Field label="Buton 1 Metni" value={g("hero_btn1")} onChange={v => set("hero_btn1", v)} placeholder="Randevu Al" />
             <Field label="Buton 2 Metni" value={g("hero_btn2")} onChange={v => set("hero_btn2", v)} placeholder="WhatsApp ile Yaz" />
           </div>
         </Section>

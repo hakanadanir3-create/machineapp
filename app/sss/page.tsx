@@ -25,7 +25,7 @@ interface Faq {
 
 const FALLBACK: Faq[] = [
   { id: "1", question: "Machine Gym'e nasıl üye olabilirim?", answer: "Tesisimize gelerek personelimizle görüşebilir ya da web sitemiz üzerinden kayıt formumuzu doldurabilirsiniz. Üyelik işleminiz birkaç dakika içinde tamamlanır.", category: "Üyelik", order_index: 0 },
-  { id: "2", question: "Deneme antrenmanı ücretsiz mi?", answer: "Evet, Machine Gym'de ilk antrenmanınız tamamen ücretsizdir. Randevu formumuzu doldurmanız yeterli. Salonu görün, eğitmenlerimizle tanışın, sonra karar verin.", category: "Üyelik", order_index: 1 },
+  { id: "2", question: "Özel ders randevusu nasıl alınır?", answer: "Randevu sayfamızdan tarih ve saat seçerek boks, kickboks, muay thai veya personal trainer özel ders talebinizi oluşturabilirsiniz.", category: "Üyelik", order_index: 1 },
   { id: "3", question: "Bolu'da en iyi spor salonu hangisi?", answer: "Machine Gym, Bolu'nun merkezinde 600 m² modern tesisi, uzman eğitmen kadrosu ve 5 farklı branşıyla (fitness, personal training, boks, kickboks, muay thai) öne çıkan premium spor merkezidir.", category: "Genel", order_index: 2 },
   { id: "4", question: "Çalışma saatleriniz nedir?", answer: "Pazartesi–Cuma 08:00–23:00, Cumartesi 10:00–23:00, Pazar 12:00–20:00 saatleri arasında hizmet veriyoruz.", category: "Genel", order_index: 3 },
   { id: "5", question: "Personal trainer ücreti ne kadar?", answer: "Kişisel antrenman paketlerimiz hedef ve süreye göre değişmektedir. Güncel fiyatlar için /fiyatlar sayfamızı ziyaret edebilir veya WhatsApp hattımızdan bilgi alabilirsiniz.", category: "Fiyat", order_index: 4 },

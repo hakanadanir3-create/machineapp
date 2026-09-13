@@ -52,7 +52,7 @@ const OZEL_DERS_AVANTAJLARI = [
 
 const DOVUS_FAQ = [
   { question: "Bolu'da hangi dövüş salonu tavsiye edilir?", answer: "Bolu merkezde Gym Machine, boks, kickboks, muay thai ve MMA branşlarını profesyonel antrenörler eşliğinde tek çatı altında sunan 600 m² modern bir dövüş sporları ve fitness merkezidir." },
-  { question: "Bolu'da boks dersine sıfırdan başlayabilir miyim?", answer: "Evet. Gym Machine'de sıfırdan başlayanlar için özel başlangıç programları mevcuttur. Herhangi bir ön deneyim gerekmez, ilk deneme dersi ücretsizdir." },
+  { question: "Bolu'da boks dersine sıfırdan başlayabilir miyim?", answer: "Evet. Gym Machine'de sıfırdan başlayanlar için özel başlangıç programları mevcuttur. Herhangi bir ön deneyim gerekmez." },
   { question: "Kickboks ve muay thai arasındaki fark nedir?", answer: "Kickboks yumruk ve tekme tekniklerini kullanırken, muay thai bunlara ek olarak diz ve dirsek darbelerini de içerir. Muay thai 'sekiz uzuv sanatı' olarak bilinir ve klinç çalışmasına izin verir." },
   { question: "Dövüş sporları özel dersi ne kadar sürer?", answer: "Özel dersler genellikle 45-60 dakika sürer ve seviyenize göre ısınma, teknik çalışma, pad/torba antrenmanı ve kondisyon bölümlerinden oluşur." },
   { question: "Gym Machine'de ring ve kum torbası var mı?", answer: "Evet, tesisimizde profesyonel boks ringi, çeşitli ağırlıklarda kum torbaları ve pad ekipmanları bulunmaktadır." },
@@ -101,11 +101,11 @@ export default function BoluDovusSalonuPage() {
               Bolu Dövüş Salonu | Gym Machine Bolu
             </h1>
             <p style={{ color: "rgba(255,255,255,0.55)", fontSize: "0.9375rem", maxWidth: "38rem", marginInline: "auto", lineHeight: 1.75 }}>
-              Bolu merkezde boks, kickboks, muay thai ve MMA eğitimi veren profesyonel dövüş salonu. Uzman antrenör kadrosu, profesyonel ring ve modern ekipmanlarla hem fitness hem öz savunma hedeflerinize ulaşın. İlk deneme dersi ücretsiz.
+              Bolu merkezde boks, kickboks, muay thai ve MMA eğitimi veren profesyonel dövüş salonu. Uzman antrenör kadrosu, profesyonel ring ve modern ekipmanlarla hem fitness hem öz savunma hedeflerinize ulaşın.
             </p>
             <div style={{ display: "flex", gap: "0.75rem", justifyContent: "center", flexWrap: "wrap", marginTop: "1.75rem" }}>
               <Link href="/randevu" style={{ display: "inline-flex", alignItems: "center", gap: "0.5rem", padding: "0.875rem 1.75rem", background: "#6A0D25", color: "#fff", fontWeight: 700, fontSize: "0.9375rem", borderRadius: "12px", border: "1px solid rgba(212,175,55,0.3)", textDecoration: "none" }}>
-                Ücretsiz Deneme Dersi Al <ArrowRight style={{ width: "16px", height: "16px" }} />
+                Özel Ders İçin Randevu Al <ArrowRight style={{ width: "16px", height: "16px" }} />
               </Link>
               <Link href="/iletisim" style={{ display: "inline-flex", alignItems: "center", padding: "0.875rem 1.75rem", background: "#1A1A1A", color: "rgba(255,255,255,0.7)", fontWeight: 500, fontSize: "0.9375rem", borderRadius: "12px", border: "1px solid #2A2A2A", textDecoration: "none" }}>
                 Bize Ulaşın
@@ -238,7 +238,7 @@ export default function BoluDovusSalonuPage() {
           {/* CTA */}
           <div style={{ background: "rgba(106,13,37,0.08)", border: "1px solid rgba(106,13,37,0.2)", borderRadius: "20px", padding: "2.5rem", textAlign: "center" }}>
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Bolu&apos;da Dövüş Sporlarına Başla</p>
-            <h3 style={{ color: "#fff", fontWeight: 800, fontSize: "1.5rem", fontFamily: "var(--font-heading)", marginBottom: "0.75rem" }}>İlk Deneme Dersin Ücretsiz</h3>
+            <h3 style={{ color: "#fff", fontWeight: 800, fontSize: "1.5rem", fontFamily: "var(--font-heading)", marginBottom: "0.75rem" }}>Özel Ders İçin Randevu Al</h3>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.875rem", marginBottom: "1.75rem", maxWidth: "28rem", marginInline: "auto" }}>
               Boks, kickboks veya muay thai — hangi branş sana uygun görmek için bugün randevu al, tesisimizi gez, antrenörlerimizle tanış.
             </p>

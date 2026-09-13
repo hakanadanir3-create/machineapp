@@ -386,7 +386,7 @@ export default function Pricing({ plans, whatsapp = "903742701455" }: PricingPro
             <MessageCircle style={{ width: "16px", height: "16px" }} /> WhatsApp&apos;ta Sor
           </a>
           <Link href="/randevu" style={{ display: "inline-flex", alignItems: "center", padding: "0.75rem 1.5rem", background: "#6A0D25", color: "#fff", fontWeight: 700, fontSize: "0.875rem", borderRadius: "12px", border: "1px solid rgba(212,175,55,0.3)", textDecoration: "none" }}>
-            Ücretsiz Deneme Al
+            Randevu Al
           </Link>
         </div>
       </div>

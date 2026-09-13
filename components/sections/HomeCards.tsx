@@ -17,7 +17,7 @@ const items = [
   },
   {
     label: "Randevu Al",
-    sub: "Deneme antrenmanı veya danışmanlık için",
+    sub: "Özel ders veya danışmanlık için",
     href: "/randevu",
   },
   {

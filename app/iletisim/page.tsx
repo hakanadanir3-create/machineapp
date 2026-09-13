@@ -9,7 +9,7 @@ export async function generateMetadata() {
   return buildMetadata({
     settingsKey: "seo_iletisim",
     defaultTitle: "İletişim — Machine Gym | Bolu Spor Salonu Adres ve Telefon",
-    defaultDesc: "Machine Gym Bolu iletişim bilgileri. Tabaklar Mah. Uygur Sokak No:3, Bolu Merkez. Tel: 0374 270 14 55. Ücretsiz deneme için randevu alın.",
+    defaultDesc: "Machine Gym Bolu iletişim bilgileri. Tabaklar Mah. Uygur Sokak No:3, Bolu Merkez. Tel: 0374 270 14 55. Özel ders randevusu için bize ulaşın.",
     path: "/iletisim",
     keywords: ["machine gym iletişim", "bolu spor salonu adres", "bolu fitness telefon", "machine gym telefon", "machine gym bolu konum"],
   });
@@ -45,7 +45,7 @@ export default async function IletisimPage() {
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Bize Ulaşın</p>
             <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 800, color: "#fff", fontFamily: "var(--font-heading)", marginBottom: "1rem" }}>İletişim</h1>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9375rem", maxWidth: "32rem", marginInline: "auto", lineHeight: 1.7 }}>
-              Sorularınız için bize yazın veya arayın. Deneme antrenmanı için randevu alın.
+              Sorularınız için bize yazın veya arayın. Özel ders için randevu alın.
             </p>
           </div>
         </div>

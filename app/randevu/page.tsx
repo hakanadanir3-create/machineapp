@@ -13,12 +13,10 @@ import WhatsAppButton from "@/components/WhatsAppButton";
 const TIME_SLOTS = ["09:00","10:00","11:00","12:00","14:00","15:00","16:00","17:00","18:00","19:00","20:00"];
 
 const SERVICES = [
-  { id: "deneme",    label: "Ücretsiz Deneme Antrenmanı" },
-  { id: "fitness",   label: "Fitness Üyelik Danışma"     },
-  { id: "pt",        label: "Personal Trainer"           },
-  { id: "boks",      label: "Boks Özel Ders"             },
-  { id: "kickboks",  label: "Kickboks"                   },
-  { id: "muay_thai", label: "Muay Thai"                  },
+  { id: "pt",        label: "Personal Trainer" },
+  { id: "boks",      label: "Boks Özel Ders"   },
+  { id: "kickboks",  label: "Kickboks"         },
+  { id: "muay_thai", label: "Muay Thai"        },
 ];
 
 const WA = "903742701455";
@@ -137,7 +135,7 @@ export default function RandevuPage() {
           <div style={{ textAlign:"center", marginBottom:"2.5rem" }}>
             <p style={{ color:"#D4AF37", fontSize:"0.6875rem", fontWeight:700, letterSpacing:"0.2em", textTransform:"uppercase", marginBottom:"0.75rem" }}>Online Randevu</p>
             <h1 style={{ fontSize:"clamp(1.875rem,5vw,2.75rem)", fontWeight:800, color:"#fff", fontFamily:"var(--font-heading)", marginBottom:"0.75rem" }}>Randevu Al</h1>
-            <p style={{ color:"rgba(255,255,255,0.5)", fontSize:"0.9375rem" }}>Ücretsiz deneme antrenmanı dahil tüm hizmetler için randevu alın</p>
+            <p style={{ color:"rgba(255,255,255,0.5)", fontSize:"0.9375rem" }}>Özel ders hizmetleri için randevu alın</p>
           </div>
 
           <div style={{ display:"grid", gridTemplateColumns:"1fr", gap:"1.5rem", maxWidth:900, marginInline:"auto" }} className="randevu-grid">

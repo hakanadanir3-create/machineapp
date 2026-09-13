@@ -104,7 +104,7 @@ export default async function KosullarPage() {
               <li>Grup fitness dersleri</li>
               <li>Online program satışı</li>
               <li>Spor ürünleri ve takviyeleri satışı</li>
-              <li>Deneme antrenmanı ve üyelik danışmanlığı</li>
+              <li>Özel ders randevusu ve üyelik danışmanlığı</li>
             </ul>
             <p style={textStyle}>
               Bu Site; söz konusu hizmetlere ilişkin bilgi sunmak, randevu almak, üyelik işlemleri yapmak ve

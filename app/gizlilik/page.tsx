@@ -125,7 +125,7 @@ export default async function GizlilikPage() {
             <p style={textStyle}>Topladığımız kişisel verileri aşağıdaki amaçlarla kullanmaktayız:</p>
             <ul style={listStyle}>
               <li>Üyelik ve hizmet süreçlerini yönetmek</li>
-              <li>Randevu, program ve deneme antrenmanı taleplerini işleme almak</li>
+              <li>Randevu ve program taleplerini işleme almak</li>
               <li>Sipariş ve ödeme işlemlerini gerçekleştirmek</li>
               <li>Müşteri hizmetleri sunmak ve sorularınızı yanıtlamak</li>
               <li>Kampanya, etkinlik ve duyurular hakkında bilgilendirme yapmak (onayınız dahilinde)</li>
