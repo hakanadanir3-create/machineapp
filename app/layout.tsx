@@ -105,6 +105,31 @@ export default async function RootLayout({
     },
   };
 
+  const siteUrl = s(settings, "site_url", "https://www.machinegym.biz");
+
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: siteName,
+    alternateName: "Machine Gym Bolu",
+    url: siteUrl,
+    logo: logoUrl || undefined,
+    telephone: s(settings, "contact_phone", "+90 374 270 14 55"),
+    email: s(settings, "contact_email", "info@machinegym.biz"),
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: s(settings, "contact_address", "Tabaklar Mahallesi, Uygur Sokak No:3"),
+      addressLocality: "Bolu Merkez",
+      addressRegion: "Bolu",
+      postalCode: "14300",
+      addressCountry: "TR",
+    },
+    sameAs: [
+      s(settings, "social_instagram", "https://www.instagram.com/gymachinebolu"),
+      s(settings, "social_facebook", "https://www.facebook.com/MACHINEGYM"),
+    ].filter(Boolean),
+  };
+
   return (
     <html lang="tr" className={`${inter.variable} ${montserrat.variable}`}>
       <head>
@@ -128,6 +153,10 @@ export default async function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationSchema) }}
         />
 
         {/* Site config for client components */}

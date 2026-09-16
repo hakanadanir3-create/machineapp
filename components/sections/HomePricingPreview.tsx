@@ -16,7 +16,7 @@ export default function HomePricingPreview() {
         <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} style={{ textAlign: "center", marginBottom: "3rem" }}>
           <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Şeffaf Fiyatlandırma</p>
           <h2 style={{ fontSize: "clamp(1.75rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", fontFamily: "var(--font-heading)" }}>Fitness Üyelik Paketleri</h2>
-          <p style={{ color: "rgba(255,255,255,0.5)", marginTop: "0.875rem", fontSize: "0.9375rem" }}>Gizli ücret yok. İlk antrenman ücretsiz.</p>
+          <p style={{ color: "rgba(255,255,255,0.5)", marginTop: "0.875rem", fontSize: "0.9375rem" }}>Gizli ücret yok. Taahhütsüz aylık üyelik seçeneği mevcuttur.</p>
         </motion.div>
 
         <div style={{ display: "grid", gap: "1.25rem" }} className="pricing-grid">

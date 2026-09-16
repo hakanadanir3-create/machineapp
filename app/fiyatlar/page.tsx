@@ -10,7 +10,7 @@ export async function generateMetadata() {
   return buildMetadata({
     settingsKey: "seo_fiyatlar",
     defaultTitle: "Fiyatlar — Machine Gym | Bolu Spor Salonu Üyelik Fiyatları",
-    defaultDesc: "Machine Gym Bolu fiyat listesi: aylık fitness üyelik, personal trainer, boks ve kickboks paketleri. Gizli ücret yok. İlk antrenman ücretsiz.",
+    defaultDesc: "Machine Gym Bolu fiyat listesi: aylık fitness üyelik, personal trainer, boks ve kickboks paketleri. Gizli ücret yok, taahhütsüz üyelik seçeneği mevcuttur.",
     path: "/fiyatlar",
     keywords: ["bolu spor salonu fiyat", "bolu fitness üyelik ücreti", "machine gym fiyat", "personal trainer bolu fiyat", "boks dersi bolu fiyat"],
   });
@@ -50,7 +50,7 @@ export default async function FiyatlarPage() {
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Şeffaf Fiyatlandırma</p>
             <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 800, color: "#fff", fontFamily: "var(--font-heading)", marginBottom: "1rem" }}>Fiyat Listesi</h1>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9375rem", maxWidth: "32rem", marginInline: "auto", lineHeight: 1.7 }}>
-              Gizli ücret yok. İlk antrenman ücretsiz. Tüm paketler aşağıda.
+              Gizli ücret yok. Taahhütsüz aylık üyelik seçeneği mevcuttur. Tüm paketler aşağıda.
             </p>
           </div>
         </div>

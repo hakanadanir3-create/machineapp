@@ -9,7 +9,7 @@ export async function generateMetadata() {
   return buildMetadata({
     settingsKey: "seo_bolu_dovus_salonu",
     defaultTitle: "Bolu Dövüş Salonu | Gym Machine Bolu — Boks, Kickboks, Muay Thai",
-    defaultDesc: "Bolu'nun dövüş sporları merkezi Gym Machine: boks özel dersi, kickboks, muay thai ve MMA eğitimi. Profesyonel antrenörler, ring ve modern ekipman. İlk ders ücretsiz.",
+    defaultDesc: "Bolu'nun dövüş sporları merkezi Gym Machine: boks özel dersi, kickboks, muay thai ve MMA eğitimi. Profesyonel antrenörler, ring ve modern ekipman ile Bolu merkezde hizmet verir.",
     path: "/bolu-dovus-salonu",
     keywords: [
       "bolu dövüş salonu", "bolu boks salonu", "bolu kickboks", "bolu muay thai", "bolu mma",
@@ -78,6 +78,27 @@ const sportsActivityLocationSchema = {
   sport: ["Boxing", "Kickboxing", "Muay Thai", "Mixed Martial Arts"],
 };
 
+const serviceSchemas = ["Boks", "Kickboks", "Muay Thai"].map((name) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: name,
+  name: `${name} Dersi — Gym Machine Bolu`,
+  description: BRANSLAR.find((b) => b.title === name)?.desc,
+  provider: {
+    "@type": "SportsActivityLocation",
+    name: "Gym Machine Bolu",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "Tabaklar Mahallesi, Uygur Sokak No:3",
+      addressLocality: "Bolu Merkez",
+      addressRegion: "Bolu",
+      postalCode: "14300",
+      addressCountry: "TR",
+    },
+  },
+  areaServed: { "@type": "City", name: "Bolu" },
+}));
+
 export default function BoluDovusSalonuPage() {
   const faqJsonLd = faqSchema(DOVUS_FAQ);
   const breadcrumbJsonLd = breadcrumbSchema([
@@ -88,6 +109,9 @@ export default function BoluDovusSalonuPage() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(sportsActivityLocationSchema) }} />
+      {serviceSchemas.map((schema) => (
+        <script key={schema.serviceType} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Navbar />

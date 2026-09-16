@@ -6,10 +6,10 @@ const DEFAULTS = {
   phone:     "0374 270 14 55",
   email:     "info@machinegym.biz",
   address:   "Tabaklar Mah. / Uygur Sokak NO:3, Bolu Merkez",
-  instagram: "https://www.instagram.com/nejatoptikbolu",
-  facebook:  "https://facebook.com/machinegym",
-  weekday:   "08:00 – 01:00",
-  saturday:  "10:00 – 01:00",
+  instagram: "https://www.instagram.com/gymachinebolu",
+  facebook:  "https://www.facebook.com/MACHINEGYM",
+  weekday:   "08:00 – 23:00",
+  saturday:  "10:00 – 23:00",
   sunday:    "12:00 – 20:00",
 };
 

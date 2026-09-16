@@ -37,9 +37,35 @@ const FALLBACK: Service[] = [
 const HIZMETLER_FAQ = [
   { question: "Bolu'da hangi spor salonu var?", answer: "Bolu merkezdeki Machine Gym, fitness, personal trainer, boks, kickboks ve muay thai branşlarını tek çatı altında sunan 600 m² premium spor merkezidir." },
   { question: "Machine Gym'de hangi hizmetler sunuluyor?", answer: "Fitness üyeliği, personal training (kişisel antrenör), boks özel dersi, kickboks ve muay thai branşlarında profesyonel eğitim sunulmaktadır." },
-  { question: "Boks dersine başlamak için ne gerekli?", answer: "Herhangi bir ön koşul yoktur. Sıfırdan başlayanlar için özel başlangıç programları mevcuttur. İlk ders ücretsizdir." },
+  { question: "Boks dersine başlamak için ne gerekli?", answer: "Herhangi bir ön koşul yoktur. Sıfırdan başlayanlar için özel başlangıç programları mevcuttur. Güncel ders fiyatları için randevu sayfamızdan bilgi alabilirsiniz." },
   { question: "Personal trainer ne kadar süre içinde sonuç verir?", answer: "Hedefe, başlangıç seviyesine ve program uyumuna bağlı olarak genellikle 4-8 hafta içinde görünür sonuçlar elde edilir." },
 ];
+
+const SERVICE_PROVIDER = {
+  "@type": "LocalBusiness",
+  name: "Machine Gym",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "Tabaklar Mahallesi, Uygur Sokak No:3",
+    addressLocality: "Bolu Merkez",
+    addressRegion: "Bolu",
+    postalCode: "14300",
+    addressCountry: "TR",
+  },
+};
+
+const SERVICE_SCHEMAS = [
+  { name: "Fitness Üyeliği", description: "Bolu'daki en modern kardiyovasküler ve kuvvet ekipmanlarıyla dolu 600 m² salonda sınırsız antrenman." },
+  { name: "Personal Trainer", description: "Sertifikalı kişisel antrenörlerle hedefe özel program, teknik düzeltme ve haftalık takip." },
+].map((svc) => ({
+  "@context": "https://schema.org",
+  "@type": "Service",
+  serviceType: svc.name,
+  name: `${svc.name} — Machine Gym Bolu`,
+  description: svc.description,
+  provider: SERVICE_PROVIDER,
+  areaServed: { "@type": "City", name: "Bolu" },
+}));
 
 export default async function HizmetlerPage() {
   const supabase = await createClient();
@@ -59,6 +85,9 @@ export default async function HizmetlerPage() {
 
   return (
     <>
+      {SERVICE_SCHEMAS.map((schema) => (
+        <script key={schema.serviceType} type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
+      ))}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }} />
       <Navbar />
@@ -69,7 +98,7 @@ export default async function HizmetlerPage() {
             <p style={{ color: "#D4AF37", fontSize: "0.6875rem", fontWeight: 700, letterSpacing: "0.2em", textTransform: "uppercase", marginBottom: "0.75rem" }}>Branşlarımız</p>
             <h1 style={{ fontSize: "clamp(2rem, 5vw, 3.25rem)", fontWeight: 800, color: "#fff", fontFamily: "var(--font-heading)", marginBottom: "1rem" }}>Hizmetler</h1>
             <p style={{ color: "rgba(255,255,255,0.5)", fontSize: "0.9375rem", maxWidth: "32rem", marginInline: "auto", lineHeight: 1.7 }}>
-              Her seviye ve hedefe uygun branşlarda profesyonel eğitim alın. İlk ders ücretsiz.
+              Her seviye ve hedefe uygun branşlarda profesyonel eğitim alın.
             </p>
           </div>
         </div>
