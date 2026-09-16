@@ -10,7 +10,7 @@ export async function generateMetadata() {
   return buildMetadata({
     settingsKey: "seo_hizmetler",
     defaultTitle: "Hizmetler — Machine Gym | Bolu Fitness, Boks, Kickboks, Muay Thai",
-    defaultDesc: "Machine Gym Bolu hizmetleri: fitness üyelik, personal trainer, boks özel ders, kickboks ve muay thai. 600 m² modern tesis. İlk ders ücretsiz.",
+    defaultDesc: "Machine Gym Bolu hizmetleri: fitness üyelik, personal trainer, boks özel ders, kickboks ve muay thai. 600 m² modern tesis. Özel ders randevusu için hemen ulaşın.",
     path: "/hizmetler",
     keywords: ["bolu spor salonu", "bolu fitness", "bolu boks dersi", "bolu personal trainer", "bolu kickboks", "bolu muay thai", "machine gym bolu hizmetler"],
   });

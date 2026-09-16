@@ -16,7 +16,7 @@ import { breadcrumbSchema, faqSchema, BASE_URL } from "@/lib/seo";
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   const title = s(settings, "default_meta_title", "Machine Gym – Bolu'nun Premium Fitness & Boks Merkezi");
-  const description = s(settings, "default_meta_description", "Bolu merkezde Machine Gym: fitness, personal trainer, boks, kickboks ve muay thai. 600 m² modern tesis. İlk antrenman ücretsiz.");
+  const description = s(settings, "default_meta_description", "Bolu merkezde Machine Gym: fitness, personal trainer, boks, kickboks ve muay thai. 600 m² modern tesis. Özel ders randevusu için hemen ulaşın.");
   return {
     title,
     description,
@@ -44,6 +44,7 @@ const HOME_FAQ = [
   { question: "Machine Gym'de hangi branşlar var?", answer: "Fitness üyeliği, personal training, boks özel dersi, kickboks ve muay thai branşlarında profesyonel eğitim sunulmaktadır." },
   { question: "Özel ders randevusu nasıl alınır?", answer: "Randevu sayfamızdan tarih ve saat seçerek boks, kickboks, muay thai veya personal trainer özel ders talebinizi oluşturabilirsiniz." },
   { question: "Machine Gym telefon numarası nedir?", answer: "Machine Gym'e +90 374 270 14 55 numaralı telefondan ulaşabilirsiniz." },
+  { question: "Bolu'da en iyi dövüş sporları salonu hangisi?", answer: "Machine Gym, boks, kickboks ve muay thai'yi sertifikalı antrenörler ve profesyonel ring/pad ekipmanıyla aynı tesiste sunan Bolu'daki dövüş sporları merkezlerinden biridir." },
 ];
 
 export default async function Home() {

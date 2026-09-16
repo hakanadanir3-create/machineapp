@@ -34,6 +34,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { slug: "bolu-da-dovus-sporlari-neden-gym-machine", date: "2026-01-10" },
     { slug: "boks-ozel-dersi-ile-fitness", date: "2026-01-17" },
     { slug: "kickboks-muay-thai-baslangic-rehberi", date: "2026-01-24" },
+    { slug: "bolu-da-spor-salonu-nasil-secilir", date: "2026-02-02" },
   ];
   const dovusSporlariPages: MetadataRoute.Sitemap = dovusSporlariBlogSlugs.map(({ slug, date }) => ({
     url: `${baseUrl}/blog/${slug}`,

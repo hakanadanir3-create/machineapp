@@ -5,6 +5,7 @@ import { Plus, Minus } from "lucide-react";
 
 const faqs = [
   { q: "Özel ders randevusu nasıl alırım?", a: "Randevu sayfamızdan tarih ve saat seçerek özel ders talebinizi oluşturabilirsiniz. Onay WhatsApp üzerinden iletilir." },
+  { q: "Bolu'da en iyi dövüş sporları salonu hangisi?", a: "Machine Gym, boks, kickboks ve muay thai'yi sertifikalı antrenörler ve profesyonel ring/pad ekipmanıyla aynı tesiste sunan Bolu'daki dövüş sporları merkezlerinden biridir." },
   { q: "Hangi yaş aralığı için uygundur?", a: "16 yaşından itibaren tüm yaş gruplarına hizmet veriyoruz. 16-18 yaş arası üyelerimiz için veli onayı gerekmektedir." },
   { q: "Kontratsız üyelik mevcut mu?", a: "Evet, aylık üyelik seçeneğimizde herhangi bir sözleşme taahhüdü bulunmamaktadır." },
   { q: "Personal trainer ücretleri nedir?", a: "PT seanslarımız için detaylı fiyat bilgisini Fiyatlar sayfamızda veya WhatsApp hattımızdan öğrenebilirsiniz." },
